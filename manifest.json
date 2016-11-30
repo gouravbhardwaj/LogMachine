@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+
+  "name": "RoboLog",
+  "short_name": "RoboLog",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "images/icon1.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ],
+  
+  "content_scripts": [
+  {
+    "matches": [
+      "https://*.salesforce.com/setup/ui/*","https://*.salesforce.com/p/setup/layout/ApexDebugLogDetailEdit/*","https://*.salesforce.com/*"
+    ],
+    "js": ["jquery-2.1.4.min.js",
+	
+	"formatDebugSummaryLog.js",
+	"formatDebugDetailsLog.js",
+	"formatApexClass.js",
+	"content.js"
+	]
+  }
+],
+
+"web_accessible_resources": [
+    "*.png","View.png"
+	]
+}
