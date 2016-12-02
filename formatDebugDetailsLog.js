@@ -10,6 +10,32 @@ var arrayOfCodeLines = myCodeBlock[0].innerHTML.split( "\n" );
 
 var formattedCodeBlock = '';
 
+formattedCodeBlock += '<div style="background: #41404e;color: white;padding: 10px;top: 25%;bottom: 0;left: 93px;height: 154px;position: inherit;width: 189px;"> '+ 
+
+
+//'<div><img src="'+chrome.extension.getURL('/images/in.png')+'" width="14px"> </div>'+
+
+'<div class="block"><div class="color" style="background-color: rgb(242, 156, 156);width: 13px;height: 13px;float: left;margin-right: 10px;"></div><div class="typeLog" >Error</div></div>'+
+
+'<div class="block"><div class="color" style="background: #9185f1;width: 13px;height: 13px;float: left;margin-right: 10px;"></div><div class="typeLog" >Variable Assignment</div></div>'+
+
+'<div class="block"><div class="color" style="background: #85f1f1;width: 13px;height: 13px;float: left;margin-right: 10px;"></div><div class="typeLog" >Callout</div></div>'+
+
+'<div class="block"><div class="color" style="background: #ccc500;width: 13px;height: 13px;float: left;margin-right: 10px;"></div><div class="typeLog" >Validation Rule</div></div>'+
+
+'<div class="block"><div class="color" style="background: #fdc5df;width: 13px;height: 13px;float: left;margin-right: 10px;"></div><div class="typeLog" >Workflow/Process Builder</div></div>'+
+
+'<div class="block"><div class="color" style="background: #FDF4C5;width: 13px;height: 13px;float: left;margin-right: 10px;"></div><div class="typeLog" >Code Unit</div></div>'+
+
+'<div class="block"><div class="color" style="background: #dff0d8;width: 13px;height: 13px;float: left;margin-right: 10px;"></div><div class="typeLog" >Method Entry</div></div>'+
+
+'<div class="block"><div class="color" style="background: #d9edf7;width: 13px;height: 13px;float: left;margin-right: 10px;"></div><div class="typeLog" >Cumulative Usage</div></div>'+
+
+'<div class="block"><div class="color" style="background: rgb(228, 228, 228);width: 13px;height: 13px;float: left;margin-right: 10px;"></div><div class="typeLog">User Debug</div></div>'+
+
+
+ '</div>';
+
 var error=false;
 var logNode='';
 for(i=0;i<arrayOfCodeLines.length;i++){
