@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "RoboLog",
-  "short_name": "RoboLog",
-  "version": "1.0",
+  "name": "LogMachine",
+  "short_name": "LogMachine",
+  "version": "2.1",
 
   "browser_action": {
     "default_icon": "images/icon1.png",
