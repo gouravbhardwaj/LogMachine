@@ -3,27 +3,38 @@
 
   "name": "LogMachine",
   "short_name": "LogMachine",
-  "version": "2.1",
-
+  "version": "2.5",
   "browser_action": {
     "default_icon": "images/icon1.png",
     "default_popup": "popup.html"
   },
   "permissions": [
+    "cookies",
+    "https://*.force.com/*",
+    "https://*.salesforce.com/",
     "activeTab",
     "https://ajax.googleapis.com/"
+   
   ],
   
   "content_scripts": [
   {
     "matches": [
-      "https://*.salesforce.com/setup/ui/*","https://*.salesforce.com/p/setup/layout/ApexDebugLogDetailEdit/*","https://*.salesforce.com/*"
+      "https://*.salesforce.com/setup/ui/*",
+      "https://*.salesforce.com/p/setup/layout/ApexDebugLogDetailEdit/*",
+      "https://*.force.com/*",
+      "https://*.salesforce.com/*"
     ],
-    "js": ["jquery-2.1.4.min.js",
-	
+    "js": [
+  "jquery-2.1.4.min.js",
+	"CodeFormatter.js",
+  "forcetk.js",
 	"formatDebugSummaryLog.js",
 	"formatDebugDetailsLog.js",
 	"formatApexClass.js",
+  "calloutRESTSFDC.js",
+  "UtilClass.js",
+  "ApexClassHandler.js",
 	"content.js"
 	]
   }

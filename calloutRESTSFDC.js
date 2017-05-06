@@ -19,7 +19,7 @@ function getSFDCIdForTheComponent(componentName,lineNumber) {
    
         // Find cases that belong to the current user
         client.query("SELECT Id FROM ApexClass WHERE Name = '"+componentName+"'", function(response){
-            console.log(response.records[0].Id);
+            //console.log(response.records[0].Id);
 			componentId = response.records[0].Id;
 			
 			window.open(window.location.origin+'/'+componentId+'?LineNo='+lineNumber.trim(), '_blank');
@@ -42,7 +42,7 @@ function isEnvironmentSandbox(){
         // Find cases that belong to the current user
         client.query("select IsSandbox from Organization limit 1", function(response){
 			orgType = response;
-            console.log(response);
+           // console.log(response);
         });
 		
 		return orgType;
