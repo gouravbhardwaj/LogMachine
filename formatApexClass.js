@@ -10,13 +10,15 @@ var classCode = myCodeBlock[0].childNodes[0].childNodes[1].childNodes[0].childNo
 var arrayOfClassCode = classCode.innerText.split('\n');
 
 var formatedCode='';
-for(i=0;i<arrayOfClassCode.length;i++){
+for(var i=0;i<arrayOfClassCode.length;i++){
 	
 	//console.log(arrayOfClassCode[i]);
 	elementValue = '';
 	
-	console.log(getQueryParams('LineNo'));
-	lineNumber = parseInt(getQueryParams('LineNo').trim());
+	//console.log(getQueryParams('lineNo'));
+	lineNumber = parseInt(getQueryParams('lineNo').trim());
+
+	
 	if(arrayOfClassCode[i]==""){
 		
 		elementValue = " ";
@@ -26,17 +28,14 @@ for(i=0;i<arrayOfClassCode.length;i++){
 	}
 	
 	
-	if(i==(lineNumber-1)){
-		formatedCode +='<div style="background-color: rgb(242, 156, 156);color: rgb(161, 34, 34);">'+elementValue+'</div>';	
-		
+	if(i==(lineNumber-1) || elementValue.indexOf(getQueryParams('methodName').trim())>=0){
+		formatedCode +='<div style="background-color: #ffe28c;font-size: 13px;font-weight: 700;color: rgb(113, 85, 4);">'+elementValue+'</div>';	
 	}else{
-	formatedCode +='<div>'+elementValue+'</div>';	
-		
+		formatedCode +='<div>'+elementValue+'</div>';	
 	}
 	
 }
 classCode.innerHTML = formatedCode;
-
 
 }
 
@@ -46,8 +45,8 @@ function getQueryParams( url ) {
 	var parameters = new Array();
 	name = (window.location.href).substring((window.location.href).indexOf('?'),(window.location.href).length);
 	
-	if(name.indexOf('+')>0){
-	   parameters = name.split('+');	
+	if(name.indexOf('&')>0){
+	   parameters = name.split('&');	
 	}else{
 		
 		
