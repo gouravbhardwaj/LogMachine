@@ -34,7 +34,7 @@ if(elementValue.indexOf('FATAL_ERROR')>0){
 	
 	    //console.log('### ::: '+errorString);
 	
-		formattedCodeBlock += '<div style="background-color: rgb(242, 156, 156);color: rgb(161, 34, 34);font-weight: 900;font-size:14px">'+elementValue+
+		formattedCodeBlock += '<div class="logContentBlock errorBlock" style="background-color: rgb(242, 156, 156);color: rgb(161, 34, 34);font-weight: 900;font-size:14px">'+elementValue+
 		
 		'<span style="margin-left: 10px;"><a href="'+searchHelpUrl+errorString+'" target="_blank"><img src="'+chrome.extension.getURL('/images/help.png')+'" width="14px"></a></span>'
 		'</div>';
@@ -61,7 +61,7 @@ else if(error==true && elementValue.indexOf('Class.')>=0){
 
 	*/
 	
-	formattedCodeBlock += '<div  style="background-color: rgb(242, 156, 156);color: rgb(161, 34, 34);font-weight: 900;">'+elementValue
+	formattedCodeBlock += '<div class="logContentBlock errorBlock"  style="background-color: rgb(242, 156, 156);color: rgb(161, 34, 34);font-weight: 900;">'+elementValue
 	+
 	
 	'</div>';
@@ -166,7 +166,7 @@ else{
 	}
 	
 	else{
-	formattedCodeBlock += '<div>'+elementValue+'</div>';
+	formattedCodeBlock += '<div class="logContentBlock DEFAULT">'+elementValue+'</div>';
 	//formattedCodeBlock += FormatterClass.getFormattedElement(elementValue,'DEFAULT');
 	}
 	
@@ -206,11 +206,13 @@ assignEventHandlers();
 
 //Event Handlers ===============
 var assignEventHandlers = function(){
+
+	//1
 	var colorIndexElement = document.getElementById("colorIndex");
 
 
 	   window.addEventListener("scroll", function(){
-	    console.log('clicked color index'+window.pageYOffset+' : '+colorIndexElement.offsetTop);
+	    
 	     if(window.pageYOffset > 560){
 
 		      colorIndexElement.style.position='fixed';
@@ -224,5 +226,47 @@ var assignEventHandlers = function(){
 		 }
 
 	});	
+	//1 Ends
 
+
+	//2
+	var clickedClass;
+	var checkIndex = document.getElementsByClassName('checkIndex');
+     
+	   for (var i = 0; i < checkIndex.length; i++) {
+			checkIndex[i].addEventListener("click", function(){
+			  
+
+			    clickedClass = this.attributes[1].value.split(' ')[1];
+				//console.log('clicked component : '+clickedClass);
+				var logContentBlocks = document.getElementsByClassName('logContentBlock '+clickedClass);
+
+			    if(this.checked){
+	              
+                           for (var j = 0; j < logContentBlocks.length; j++) {
+
+                                
+	                                 logContentBlocks[j].style.display = 'block';
+                                
+                           	}
+  
+			    }else{
+					
+                             for (var j = 0; j < logContentBlocks.length; j++) {
+
+                                
+	                                 logContentBlocks[j].style.display = 'none';
+                                
+                           	}
+
+	
+			    }
+
+
+			});	
+		}//for Ends
+
+	//2 Ends
+    
+ 
 }
