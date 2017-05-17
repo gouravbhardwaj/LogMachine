@@ -7,9 +7,10 @@ font-size and other styling to that elment.
 
 var FormatterClass = {
 
-colorIndexTemplate : '<div id="colorIndex" style="background: #41404e;color: white;padding: 10px;top: 25%;bottom: 0;left: 93px;height: 200px;position: inherit;width: 222px;">',
+colorIndexTemplate : '<div id="colorIndex" style="background: rgb(35, 35, 47);color: white;padding: 10px;bottom: 0;left: 93px;height: 248px;position: inherit;width: 257px;">'+
+'<div class="colorIndexPallet" style="font-size: 20px;text-align: center;padding: 5px;background: #23232f;float: left;">Context Index</div><i data-state="popIn" id="popOutIndex" style="display:none;cursor: pointer;float: right;padding-top: 2px;font-size: 16px;" class="fa fa-external-link" aria-hidden="true"></i><div class="indexList">',
 
-globalStyle : {'Font_Weight':'900','Font_Size':'14px','Background_Color':'#41404e','Font_Color':'white'},
+globalStyle : {'Font_Weight':'900','Font_Size':'14px','Background_Color':'rgb(35, 35, 47)','Font_Color':'white'},
 
 debugLevelToColorMapper : [
 ["FATAL_ERROR",{'Label':'Error','Text_Color':'rgb(161, 34, 34)','Background_Color':'rgb(242, 156, 156)','borderColor':'none','styleClass':'errorBlock'}],
@@ -21,7 +22,8 @@ debugLevelToColorMapper : [
 ["METHOD_ENTRY",{'Label':'Method Entry','Text_Color':'#0c350d','Background_Color':'#bceea8','borderColor':'none','styleClass':'methodEntry'}],
 ["CUMULATIVE_LIMIT_USAGE",{'Label':'Cumulative Usage','Text_Color':'#31708f','Background_Color':'#d9edf7','borderColor':'none','styleClass':'CUMULATIVE_LIMIT_USAGE'}],
 ["USER_DEBUG",{'Label':'User Debug','Text_Color':'rgb(6, 6, 6)','Background_Color':'rgb(252, 252, 252)','borderColor':'none','styleClass':'USER_DEBUG'}],
-["DEFAULT",{'Label':'Default','Text_Color':'none','Background_Color':'none','borderColor':'white','styleClass':'DEFAULT'}]
+["DEFAULT",{'Label':'Default','Text_Color':'none','Background_Color':'none','borderColor':'white','styleClass':'DEFAULT'}],
+["TOGGLE",{'Label':'ToggleAll','Text_Color':'none','Background_Color':'none','borderColor':'white','styleClass':'TOGGLEALL'}] //New
 ],
 
 getColorForTheLevel : function(debugLevel){
@@ -57,9 +59,11 @@ indexSection += '<div class="block" style="width: 100%;float: left;">'+
 
 //}
 
-});
+});//Loop Ends
 
-indexSection +='</div>';
+indexSection +='</div></div>';
+
+//indexSection +='</div>';
 
 return indexSection;
 
@@ -67,6 +71,8 @@ return indexSection;
 
 methodEntryCounter : 0,
 codeUnitComponentId:' ',
+rightArrayElement :'<i class="fa fa-angle-double-right" style="font-weight: 800;font-size: 20px;color: red;" aria-hidden="true"></i>',
+leftArrayElement :'<i class="fa fa-angle-double-left" style="font-weight: 800;font-size: 20px;color: blue;" aria-hidden="true"></i>',
 
 getFormattedElement : function(element,debugLevel){
 //	console.log('### : '+debugLevel);
@@ -75,13 +81,16 @@ getFormattedElement : function(element,debugLevel){
 if(debugLevel=='METHOD_ENTRY'){
 formatter = this.getColorForTheLevel('METHOD_ENTRY');
 formatted = '<div class="logContentBlock methodEntry"  style="color:'+formatter.Text_Color+';background-color:'+formatter.Background_Color
-+';font-weight: '+this.globalStyle.Font_Weight+';font-size:'+this.globalStyle.Font_Size+'"><a class="methodEntryClass" id="methodEntry'+this.methodEntryCounter+'" href="//www.google.com" target="_blank">'+element+'</a></div>';
++';font-weight: '+this.globalStyle.Font_Weight+';font-size:'+this.globalStyle.Font_Size+'"><a class="methodEntryClass" id="methodEntry'+this.methodEntryCounter+'" href="#" target="_blank">'+element.replace('METHOD_ENTRY|','METHOD_ENTRY|'+this.leftArrayElement)+'</a></div>';
+
+
+console.log(element.indexOf('METHOD_ENTRY|')+13);
 
 this.methodEntryCounter++;
 }else if(debugLevel=='METHOD_EXIT'){
 formatter = this.getColorForTheLevel('METHOD_ENTRY');
 formatted = '<div class="logContentBlock methodEntry" style="color:'+formatter.Text_Color+';background-color:'+formatter.Background_Color
-+';font-weight: '+this.globalStyle.Font_Weight+';font-size:'+this.globalStyle.Font_Size+'"><a class="methodEntryClass" id="methodEntry'+this.methodEntryCounter+'" href="//www.google.com" target="_blank">'+element+'</a></div>';
++';font-weight: '+this.globalStyle.Font_Weight+';font-size:'+this.globalStyle.Font_Size+'"><a class="methodEntryClass" id="methodEntry'+this.methodEntryCounter+'" href="#" target="_blank">'+element.replace('METHOD_EXIT|','METHOD_EXIT|'+this.rightArrayElement)+'</a></div>';
 }
 
 
