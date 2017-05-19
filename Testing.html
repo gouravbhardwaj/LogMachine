@@ -1,0 +1,340 @@
+<html>
+<head>
+
+</head>
+<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+<link href="font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet">
+
+<style>
+
+body{
+background-image: url('D:/Users/gobhardw/Downloads/wallpap.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+
+font-family: 'Raleway', sans-serif;
+color:white;
+}
+
+
+.footerSelection {
+    width: 49%;
+    text-align: center;
+    padding-top: 8px;
+	cursor: pointer;
+}
+.footer {
+    bottom: 0px;
+}
+
+#frostOverlay{
+
+height: 100%;
+width: 22%;
+position: fixed;
+background: rgba(0, 0, 0, 0.75);
+z-index: 999;
+top: 0px;
+right: 0px;
+}
+
+input{
+     width: 86%;
+    height: 33px;
+    margin-left: 7%;
+    margin-top: 10px;
+    background: #585858;
+    border: none;
+    padding: 5px;
+    color: white;
+}
+
+ .heading{
+  color: white;
+  padding: 24px 9px 0px 16px;
+ }
+
+.itemLists{
+    color: white;
+    margin-top: 14px;
+    box-shadow: -1px -1px 17px 0px rgba(195, 192, 192, 0.35);
+	max-height: 161px;
+    overflow-y: scroll;
+}
+
+.classList{
+        height: 481;
+    max-height: 481;
+}
+
+.icon{
+    float: left;
+    width: 10%;
+    text-align: center;
+    padding-top: 5px;
+    font-size: 11px;
+}
+
+.addIcon{
+padding-left: 7px;
+}
+
+.className{
+float: left;
+    width: 73%;
+}
+
+.coverage{
+    text-align: center;
+}
+
+.itemListItem{
+    padding: 5px;
+    background: rgba(49, 41, 41, 0.45);
+    margin-bottom: 3px;
+    box-shadow: inset 20px 0px 11px 5px rgba(10, 10, 10, 0.35);
+}
+
+.addIcon{
+    float: left;
+    margin-right: 8px;
+}
+
+::-webkit-scrollbar {
+    width: 11px;
+}
+::-webkit-scrollbar-track {
+    background-color: #898080;
+    border-left: 1px solid #898080;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #4f4e4e;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #aaa;
+}
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+  font-family: 'Raleway', sans-serif;
+}
+
+
+.active{
+ display:block;
+}
+
+.inActive{
+display:none;
+}
+</style>
+<body>
+<div id="frostOverlay" style="height: 100%;width: 25%;position: fixed;background: rgba(0, 0, 0, 0.82);z-index: 999;top: 0px;right: 0px;box-shadow: -15px 7px 20px 3px rgba(36, 31, 25, 0.57);"> 
+
+<!--First Section Test Run -->
+<div id="testRun" class="active">
+<input type="text" id="searchField" placeholder="Search"> 
+
+<div class="watcher">
+<div class="heading">Watch List :</div>
+<div id="watchLists" class="itemLists">
+  
+
+</div>
+</div>
+
+
+
+
+
+<div class="watcher">
+<div class="heading">Class List :</div>
+<div id="classesList" class="itemLists classList">
+</div>
+</div>
+
+</div> 
+<!--First Section Test Run Ends -->
+
+<!--Second Section Report Run -->
+<div id="testReport" class="inActive">
+<canvas id="myChart" width="400" height="400"></canvas>
+</div>
+<!--Second Section Report Run Ends-->
+
+<div class="footer">
+<div class="footerSelection" style="float: left;" href="testRun"> Test Run </div>
+<div class="footerSelection" style="float: right;" href="testReport"> Test Report</div>
+</div>
+
+
+
+<div>
+</body>
+
+<script id="templateWatchlist" type="customTemplate">
+<div id="watchListItem" class="itemListItem"> 
+   <div class="addIcon" style="float:left;"> - </div>
+   <div class="icon"> <i class="fa fa-circle" aria-hidden="true" style="color:{{color}}"></i></div>
+   <div class="className" style="float:left">{{class}}</div>
+   <div class="coverage">{{coverage}}</div>
+  </div>
+
+</script>
+
+<script id="templateTotalList" type="customTemplate">
+<div id="watchListItem" class="itemListItem"> 
+   <div class="addIcon" style="float:left;"> + </div>
+   <div class="icon"> <i class="fa fa-circle" aria-hidden="true" style="color:{{color}}"></i> </div>
+   <div class="className" style="float:left">{{class}}</div>
+   <div class="coverage">{{coverage}}</div>
+  </div>
+
+</script>
+
+<script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+  
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
+
+<script>
+//Test Data HERE
+var classCoverageDetails = [
+{classname:'HN_HVACProductCatalog',coverage:'80%',icon:'green'},
+{classname:'HN_CCCartDetails',coverage:'60%',icon:'red'},
+{classname:'HN_HVACProductDetailsController',coverage:'90%',icon:'green'},
+{classname:'DD_TestDataUtil',coverage:'70%',icon:'red'},
+
+];
+
+var watchListDetails = [
+{classname:'HN_HVACProductCatalog',coverage:'80%',icon:'green'},
+{classname:'HN_CCCartDetails',coverage:'60%',icon:'red'}
+
+];
+//Test Data HERE Ends
+
+window.onload = function(){
+
+
+  WatchListObject.renderWatchList(watchListDetails);
+  ClassListObject.renderClassList(classCoverageDetails);
+  
+  
+//Event Handler  
+$('#searchField').keypress(function(){
+     console.log(event.key);
+	 var itemsArray = [];
+	 
+	 if($('#searchField').val()!=''){
+	  for(var i = 0; i<classCoverageDetails.length ; i++){
+	     if($('#searchField').val().toLowerCase()!='' && classCoverageDetails[i].classname.toLowerCase().indexOf($('#searchField').val().toLowerCase())>=0){
+		    console.log('### : '+classCoverageDetails[i].classname);
+			
+			itemsArray.push(classCoverageDetails[i]);
+			
+		 }
+		 ClassListObject.renderClassList(itemsArray);
+	 }
+	 }else{
+	     ClassListObject.renderClassList(classCoverageDetails);
+	 }
+	
+  
+});
+//Event Handler Ends 
+
+
+//Event Handler to Change Tab
+$('.footerSelection').click(function(){
+console.log();
+
+if(this.getAttribute('href')=='testRun'){
+   $('#testReport').css('display','none');
+    $('#testRun').css('display','block');
+}else if(this.getAttribute('href')=='testReport'){
+   $('#testRun').css('display','none');
+   $('#testReport').css('display','block');
+}
+
+
+
+});
+
+
+
+//Event Handler to Change Tab Ends
+  
+//Chart Creation
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ["UnCovered", "Covered"],
+        datasets: [{
+            label: '# Coverage',
+            data: [12, 19],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 235, 118, 0.2)'
+               
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 235, 118, 1)',
+               
+            ]
+        }]
+    }
+});
+
+
+//Chart Creation Ends
+}
+
+var WatchListObject = {
+	populateWatchList : function(){
+	
+	},
+
+    renderWatchList : function(data){
+		var watchListTemplate = '';
+		
+		for(var i = 0; i<data.length ; i++){
+		  watchListTemplate += document.getElementById('templateWatchlist').innerHTML
+		  .replace("{{class}}",data[i].classname)
+		  .replace("{{coverage}}",data[i].coverage)
+		  .replace('{{color}}',data[i].icon);
+
+		}
+		
+		document.getElementById('watchLists').innerHTML = watchListTemplate;
+	}
+}
+
+var ClassListObject = {
+	populateClassList : function(){
+	
+	},
+   renderClassList : function(data){
+		var templates = '';
+
+		for(var i = 0; i<data.length ; i++){
+		  templates += document.getElementById('templateTotalList').innerHTML
+		  .replace("{{class}}",data[i].classname)
+		  .replace("{{coverage}}",data[i].coverage)
+		  .replace('{{color}}',data[i].icon);
+
+		}
+
+		document.getElementById('classesList').innerHTML = templates;
+   
+   }
+
+}
+</script>
+
+</html>

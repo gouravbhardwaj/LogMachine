@@ -23,6 +23,7 @@ if(window.location.href.indexOf('my.salesforce.com')>=0
 }
 
 
+ debugConsoleHandler.getApexClassCoverage();
 
 //formatApexClass();
 
