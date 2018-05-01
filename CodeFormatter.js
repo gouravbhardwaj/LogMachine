@@ -8,7 +8,7 @@ font-size and other styling to that elment.
 var FormatterClass = {
 
 colorIndexTemplate : '<div id="colorIndex" style="background: rgb(35, 35, 47);color: white;padding: 10px;bottom: 0;left: 93px;height: 248px;position: inherit;width: 257px;">'+
-'<div class="colorIndexPallet" style="font-size: 20px;text-align: center;padding: 5px;background: #23232f;float: left;">Context Index</div><i data-state="popIn" id="popOutIndex" style="display:none;cursor: pointer;float: right;padding-top: 2px;font-size: 16px;" class="fa fa-external-link" aria-hidden="true"></i><div class="indexList">',
+'<div class="colorIndexPallet" style="font-size: 20px;text-align: center;padding: 5px;background: #23232f;float: left;">Context Index</div><img src='+chrome.extension.getURL('/images/popIn.png')+' data-state="popIn" id="popOutIndex" style="width: 15px;display:none;cursor: pointer;float: right;padding-top: 2px;font-size: 16px;" aria-hidden="true"></img><div class="indexList">',
 
 globalStyle : {'Font_Weight':'900','Font_Size':'14px','Background_Color':'rgb(35, 35, 47)','Font_Color':'white'},
 
@@ -71,8 +71,8 @@ return indexSection;
 
 methodEntryCounter : 0,
 codeUnitComponentId:' ',
-rightArrayElement :'<i class="fa fa-angle-double-right" style="font-weight: 800;font-size: 20px;color: red;" aria-hidden="true"></i>',
-leftArrayElement :'<i class="fa fa-angle-double-left" style="font-weight: 800;font-size: 20px;color: blue;" aria-hidden="true"></i>',
+rightArrayElement :'<img src='+chrome.extension.getURL('/images/rightArrow.png')+' class="fa fa-angle-double-right" style="width:14px;font-weight: 800;font-size: 20px;color: red;" aria-hidden="true"></img>',
+leftArrayElement :'<img src='+chrome.extension.getURL('/images/leftArrow.png')+' class="fa fa-angle-double-left" style="width:14px;font-weight: 800;font-size: 20px;color: blue;" aria-hidden="true"></img>',
 
 getFormattedElement : function(element,debugLevel){
 //	console.log('### : '+debugLevel);
@@ -84,7 +84,7 @@ formatted = '<div class="logContentBlock methodEntry"  style="color:'+formatter.
 +';font-weight: '+this.globalStyle.Font_Weight+';font-size:'+this.globalStyle.Font_Size+'"><a class="methodEntryClass" id="methodEntry'+this.methodEntryCounter+'" href="#" target="_blank">'+element.replace('METHOD_ENTRY|','METHOD_ENTRY|'+this.leftArrayElement)+'</a></div>';
 
 
-console.log(element.indexOf('METHOD_ENTRY|')+13);
+//console.log(element.indexOf('METHOD_ENTRY|')+13);
 
 this.methodEntryCounter++;
 }else if(debugLevel=='METHOD_EXIT'){

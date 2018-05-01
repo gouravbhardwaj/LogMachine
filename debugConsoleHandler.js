@@ -14,13 +14,13 @@ client.setSessionToken(UtilClass.getCookieValue('sid'));
 
 
 //client.query('SELECT ApexClassOrTrigger.Name, NumLinesCovered, NumLinesUncovered FROM ApexCodeCoverageAggregate ORDER BY ApexClassOrTrigger.Name ASC', function(data)
-client.query('SELECT NumLinesCovered FROM ApexCodeCoverageAggregate WHERE ApexClassorTriggerId = \'01p90000006ykkSAAQ\' Limit 1', function(data)
+/*client.query('SELECT NumLinesCovered FROM ApexCodeCoverageAggregate WHERE ApexClassorTriggerId = \'01p90000006ykkSAAQ\' Limit 1', function(data)
 {
 console.log(data);
 
 debugConsoleHandler.showRightPanel();
 });
-	
+*/	
 
 
 

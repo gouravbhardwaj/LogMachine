@@ -355,13 +355,13 @@ var assignEventHandlers = function(){
 	       	  //colorIndexElement.style.bottom='-226px';
 
 	       	  $("#colorIndex").animate({ bottom: '-226px' });
-		     
+		      $("#popOutIndex").css({'transform': 'rotate(180deg)'});
 
        }else{
 	      contextIndex.setAttribute('data-state','popOut');
 
 	      	   $("#colorIndex").animate({ bottom: '0px' });
-		      
+		      // $("#popOutIndex").css({'transform': 'rotate(-180deg)'});
 		     
        }
 
@@ -370,7 +370,7 @@ var assignEventHandlers = function(){
 
 
 		
-         console.log(contextIndex);
+        // console.log(contextIndex);
 
 		});
 
